@@ -1,109 +1,7 @@
-<html>
-<!-- The Deer By Dash Elhauge
-
--->
-<head>
-
-<style>
-body {
-    background-image: url(background-image.jpg);
-}
-
-.title {
-	font-family: "Baskerville";
-	color: #ffffff;
-	font-weight: normal;
-	text-align: center;
-	padding: 120px;
-	font-size: 50px;
-}
-
-.tlt {
-	font-family: "Baskerville";
-	color: #ffffff;
-	font-weight: normal;
-	text-align: center;
-	padding: 100px;
-	font-size: 30px;
-}
-
-</style>
-
-<link rel="stylesheet" type="text/css" href="textillate/assets/animate.css">
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="jquery.ripples/dist/jquery.ripples-min.js"></script>
-<script src="textillate/assets/jquery.lettering.js"></script>
-<script src="textillate/jquery.textillate.js"></script>
-
-<script>
-	
-//Rippling water effect
-	$(document).ready(function() {
-	try {
-		$('body').ripples({
-			resolution: 512,
-			dropRadius: 20, //px
-			perturbance: 0.2,
-		});
-	}
-	catch (e) {
-		$('.error').show().text(e);
-	}
-
-	$('.js-ripples-disable').on('click', function() {
-		$('body, main').ripples('destroy');
-		$(this).hide();
-	});
-
-	$('.js-ripples-play').on('click', function() {
-		$('body, main').ripples('play');
-	});
-
-	$('.js-ripples-pause').on('click', function() {
-		$('body, main').ripples('pause');
-	});
-});
-</script>
-
-</head>
-
-<body>
-	<h1 class="title">The Deer</h1>
-
-	<p class='tlt'>Some text</p> 
-
-
-</body>
-
-<script> 
-
-$(function () {
-	$('.tlt').textillate({
-		minDisplayTime: 1000,
-		initialDelay: 0,
-		autoStart:false,
-		in: {
-			effect: 'flipInX',
-			shuffle: true,
-			delay: 3,
-			sync: false
-		},
-
-		out: {
-			effect: 'fadeOutDown',
-			shuffle: true,
-			delay: 5
-		},
-	});
-});
-
-text = `There were no deer. 
+There were no deer. 
 This I mutter under my breath. 
 Here the frogs pushed slow, cascading bubbles through their throats, the tall, wet grass bowed before the black river, splintered rungs wound the peeling trunk of an old oak. 
-There were no deer. 
-A deer was something you saw in your backyard through red binoculars, nibbling away the berries meant for your mother’s birthday. 
+There were no deer. A deer was something you saw in your backyard through red binoculars, nibbling away the berries meant for your mother’s birthday. 
 Not here, by pavement and guard rails, red flashing lights and puddles of gasoline.
 The men trade coffees and laugh. Their black boots splash. 
 The man in front of me with the notepad smiles expectantly. Did I see it coming? I saw the road and the tall grass bending and I pulled in my shoulders. In between the blades a house with yellow windows where a silhouette pulled a tooth from its mouth. Someone left their red mitten behind. Arthur? 
@@ -140,35 +38,6 @@ the road slurred;
 my eyes buzzed; 
 my breath pulled.
 Remember when mother used to show us how to catch water from an icicle and slurp it up, Arthur? And I’d try and slurp yours up and you’d splash it in my face. 
-Focus, I’d think, and the water fell slower. I slurped and it tasted like iron so I pushed it to the back of my throat and it bubbled and I felt cold and my temples stung. 
+Focus, I’d think, and the water fell slower. I slurped and it tasted like iron so I pushed it to the back of my throat and it bubbled and I felt cold and the my temples stung. 
 Where did she go? My hands are sticky and red. I turn. 
 The red trail pushes back, back onto the road mixing with the swirling rainwater and the crunch of the boots of the policemen and the now stamping hoofs of a little baby dear, held by the nape in the arms of a man in orange, the glint of a knife withdrawing, one black eye directly on me.  
-`
-
-
-sections = text.split('\n');
-number_of_clicks = 0;
-section_id = 0;
-
-
-$('body').click(function(){
-	number_of_clicks++;
-	section_id = Math.floor(number_of_clicks/2);
-
-	if (number_of_clicks % 2 == 1){ //If odd number clicks, make text appear
-		$('p').find('.texts li:first').text(sections[section_id]);
-		$('p').textillate('in');
-	}
-	else { //If even number clicks, get rid of text
-		$('p').textillate('out');
-	}
-});
-
-
-
-
-
-</script>
-
-
-</html>
