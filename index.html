@@ -39,9 +39,30 @@ body {
 	font-size: 30px;
 }
 
+/*button {
+	margin: 9px;
+	background-color: #000000;
+	border-radius: 10px;
+	position: relative;
+	border: 0;
+	padding: 15px 25px;
+	display: inline-block;
+	text-align: center;
+	color: white;
+	border-color: white;
+	outline-style: solid;
+	font-size: 16pt;
+}
+
+button:hover {
+	box-shadow: 0 0 #ff4c4b; 
+	background-color: #FFFFFF;
+}*/
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="http://textillate.js.org/assets/animate.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -83,13 +104,11 @@ body {
 <body>
 	<h1 class="title">The Deer</h1>
 
-	<p class='tlt'></p> 
+	<button class="w3-button w3-xxlarge w3-round-large w3-border w3-border-white w3-hover-white w3-padding-small" style="color:white; font-family: Baskerville; margin-top:100px; " type="button" onclick="start()">BEGIN</button>
 
-	<!--Workaround for Chrome blocking autoplay of audio--->
-	<iframe src="audio/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
-	<audio id="player" autoplay loop><source src="audio/bed.mp3" type="audio/mp3"></audio>
-
-
+	<p class='tlt'>
+		
+	</p> 
 
 </body>
 
@@ -160,38 +179,48 @@ my breath pulled.
 Remember when mother used to show us how to catch water from an icicle and slurp it up, Arthur? And I'd try and slurp yours up and you'd splash it in my face. 
 Focus, I'd think, and the water fell slower. I slurped and it tasted like iron so I pushed it to the back of my throat and it bubbled and I felt cold and  my temples stung. 
 Where did she go? My hands are sticky and red. I turn. 
-The red trail pushes back, back onto the road mixing with the swirling rainwater and the crunch of the boots of the policemen and the now stamping hoofs of a little baby dear, held by the nape in the arms of a man in orange, the glint of a knife withdrawing, one black eye directly on me.  
+The red trail pushes back, back onto the road mixing with the swirling rainwater and the crunch of the boots of the policemen and the now stamping hoofs of a little baby dear, held by the nape in the arms of a man in orange, the glint of a knife withdrawing, one black eye directly on me. 
+THE END 
 `
 
- 
-sections = text.split('\n');
-number_of_clicks = 0;
-section_id = 0;
-var click_freeze = false; //If true, nothing happens when body is clicked
+function start(){
+	console.log("Starting animation");
+	$('button').remove();
+
+	//Start Audio bed
+	var bed = new Audio("audio/bed.mp3");
+	bed.loop = true;
+	bed.play();
+
+	sections = text.split('\n');
+	number_of_clicks = -1;
+	section_id = 0;
+	var click_freeze = false; //If true, nothing happens when body is clicked
 
 
-$('body').click(function(){
+	$('body').click(function(){
 
-	if (!click_freeze) {
-		number_of_clicks++;
-		section_id = Math.floor(number_of_clicks/2);
+		if (!click_freeze) {
+			number_of_clicks++;
+			section_id = Math.floor(number_of_clicks/2);
 
- 
-		if (number_of_clicks % 2 == 1){ //If odd number clicks, make text appear
-			$('p').find('.texts li:first').text(sections[section_id]);
-			$('p').textillate('in');
+	 
+			if (number_of_clicks % 2 == 1){ //If odd number clicks, make text appear
+				$('p').find('.texts li:first').text(sections[section_id]);
+				$('p').textillate('in');
 
-			//Start audio clip
-			var audio_clip = new Audio("audio/"+String(section_id)+".mp3");
-			click_freeze = true;
-			audio_clip.onended = function() {click_freeze = false;};
-			audio_clip.play();
+				//Start audio clip
+				var audio_clip = new Audio("audio/"+String(section_id)+".mp3");
+				click_freeze = true;
+				audio_clip.onended = function() {click_freeze = false;};
+				audio_clip.play();
+			}
+			else { //If even number clicks, get rid of text
+				$('p').textillate('out');
+			}
 		}
-		else { //If even number clicks, get rid of text
-			$('p').textillate('out');
-		}
-	}
-});
+	})
+};
 
 
 
