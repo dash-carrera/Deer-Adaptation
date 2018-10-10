@@ -5,12 +5,25 @@
 <head>
 
 <title> The Deer </title>
+<meta charset="utf-8"/>
 
 <style>
+/*html{
+	height: 100%;
+}*/
+
+
 body {
     text-align: center;
     background-color: black;
 }
+
+/*body::before{
+	content: '';
+	display:inline;
+	vertical-align: middle;
+	height: 100%;
+}*/
 
 
 .title {
@@ -31,25 +44,15 @@ body {
 	font-size: 30px;
 }
 
-/*button {
-	margin: 9px;
-	background-color: #000000;
-	border-radius: 10px;
-	position: relative;
-	border: 0;
-	padding: 15px 25px;
-	display: inline-block;
-	text-align: center;
-	color: white;
-	border-color: white;
-	outline-style: solid;
-	font-size: 16pt;
+main {
+	display: inline;
+	vertical-align: middle;
+	background: url(img/bg.jpg);
+	padding:  100px;
+	width:100%;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
-
-button:hover {
-	box-shadow: 0 0 #ff4c4b; 
-	background-color: #FFFFFF;
-}*/
 
 </style>
 
@@ -62,12 +65,25 @@ button:hover {
 <script src="http://textillate.js.org/assets/jquery.lettering.js"></script>
 <script src="http://textillate.js.org/jquery.textillate.js"></script>
 
-<script>
+</head>
+
+<body>
+
+<main>
+	<h1 class="title">The Deer</h1>
+
+	<button class="w3-button w3-xxlarge w3-round-large w3-border w3-border-white w3-hover-white w3-padding-small" style="color:white; font-family: Baskerville; margin-top:100px; " type="button" onclick="start()">BEGIN</button>
+
+	<p class='tlt'></p> 
+</main>
+
+
+<script> 
 //Rippling water effect
 	$(document).ready(function() {
 	try {
 		$('body').ripples({
-			resolution: 512,
+			resolution: 700,
 			dropRadius: 20, //px
 			perturbance: 0.2,
 		});
@@ -75,37 +91,7 @@ button:hover {
 	catch (e) {
 		$('.error').show().text(e);
 	}
-
-	$('.js-ripples-disable').on('click', function() {
-		$('body, main').ripples('destroy');
-		$(this).hide();
-	});
-
-	$('.js-ripples-play').on('click', function() {
-		$('body, main').ripples('play');
-	});
-
-	$('.js-ripples-pause').on('click', function() {
-		$('body, main').ripples('pause');
-	});
 });
-</script>
-
-</head>
-
-<body>
-	<h1 class="title">The Deer</h1>
-
-	<button class="w3-button w3-xxlarge w3-round-large w3-border w3-border-white w3-hover-white w3-padding-small" style="color:white; font-family: Baskerville; margin-top:100px; " type="button" onclick="start()">BEGIN</button>
-
-	<p class='tlt'>
-		
-	</p> 
-
-</body>
-
-<script> 
-
 
 //Set textillate to turn on
 $(function () {
@@ -127,6 +113,21 @@ $(function () {
 		},
 	});
 });
+</script>
+</body>
+
+<script>
+
+try {
+	$('body').ripples({
+		resolution: 700,
+		dropRadius: 20, //px
+		perturbance: 0.2,
+	});
+}
+catch (e) {
+	$('.error').show().text(e);
+}
 
 text = `There were no deer. 
 This I mutter under my breath. 
@@ -175,10 +176,12 @@ The red trail pushes back, back onto the road mixing with the swirling rainwater
 END OF CHAPTER 1 
 `
 
+//When Begin button pressed
 function start(){
-	console.log("Starting animation");
+
 	$('button').remove();
 
+	console.log("Starting animation");
 	//Start Audio bed
 	var bed = new Audio("audio/bed.mp3");
 	bed.loop = true;
@@ -213,8 +216,6 @@ function start(){
 		}
 	})
 };
-
-
 
 
 
